@@ -1,51 +1,62 @@
-# facilitaCME
+# Projeto Facilitacme Django
 
-## Descrição
-O facilitaCME é um sistema que gerencia materiais, rastreabilidade e outros recursos essenciais para a gestão eficiente do processo de esterilização das CMEs.
-
-## Instalação
+## Instruções de Configuração
 
 ### Pré-requisitos
-- Python 3.12.4
-- pip
+- Python 3.8+
+- Django 3.2
+- Django REST framework
+- xlsxwriter
+- fpdf
 
-### Passos para instalação
-1. **Clone o repositório**:
-```sh
-git clone https://github.com/marionelsondev/facilitacme.git
-cd facilitacme
-```
-- Este comando clona o repositório do GitHub para a sua máquina local.
-- O comando `cd facilitacme` navega para o diretório do projeto.
+### Instalação
 
-2. **Crie e ative o ambiente virtual**:
-**Windows**:
-```sh
-python -m venv venv
-venv\Scripts\activate
-```
-**macOS/Linux**:
-```sh
-python3 -m venv venv
-source venv/bin/activate
-```
-- O ambiente virtual isola as dependências do projeto das bibliotecas Python instaladas globalmente.
-- No Windows, você ativa o ambiente virtual com `venv\Scripts\activate`.
-- No macOS/Linux, você ativa com 'source venv/bin/activate'.
+1. Clone o repositório:
+    ```bash
+    git clone <url-do-repositorio>
+    cd facilitacme_django
+    ```
 
-3. **Instale as dependências**:
-- O comando `pip install -r requirements.txt` instala todas as bibliotecas listadas no arquivo `requirements.txt`
+2. Crie e ative um ambiente virtual:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # No Windows use `venv\Scripts\activate`
+    ```
 
-4. **Crie o projeto Django**:
-- O comando `django-admin startproject facilitacme_django` cria um novo projeto Django com a estrutura inicial necessária.
-- O comando `cd facilitacme_django` navega até o diretório do projeto Django.
+3. Instale as dependências necessárias:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-5. **Crie o aplicativo `materials`**:
-- O comando `python manage.py startapp materials` cria um novo aplicativo Django chamado `materials`.
+4. Aplique as migrações:
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
 
-6. **Adicionar o aplicativo `materials` ao `INSTALLED_APPS`**:
-- No arquivo `facilitacme_django/setting.py`, adicione `'rest_framework'` e `'materials'` à lista `INSTALLED_APPS` para registrar o aplicativo e o Django REST framework.
+5. Execute o servidor de desenvolvimento:
+    ```bash
+    python manage.py runserver
+    ```
 
-### Configuração de URLs
-No aplicativo `materials`, as URLs são configuradas utilizando o `DefaultRouter` do Django REST framework para gerar automaticamente as rotas das APIs. O arquivo de configuração das URLs está localizado em `materials/urls.py`.
+### Uso
 
+1. Acesse o site de administração em `http://127.0.0.1:8000/admin/` para gerenciar materiais e falhas.
+
+2. Use os seguintes endpoints:
+    - `http://127.0.0.1:8000/api/materials/`: Listar e gerenciar materiais
+    - `http://127.0.0.1:8000/api/failures/`: Listar e gerenciar falhas
+    - `http://127.0.0.1:8000/api/failures/generate_report/`: Gerar relatório de falhas em formato XLSX
+    - `http://127.0.0.1:8000/api/materials/pdf_report/`: Gerar relatório em PDF para materiais que concluíram o processo
+
+### Testes
+
+Use ferramentas como o Postman para testar os endpoints da API e garantir que estão funcionando corretamente.
+
+## Contribuição
+
+Sinta-se à vontade para enviar problemas, fazer um fork do repositório e enviar pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT.

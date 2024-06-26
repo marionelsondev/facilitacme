@@ -1,0 +1,4 @@
+Django==3.2
+djangorestframework==3.12.4
+xlsxwriter==1.4.3
+fpdf==1.7.2
