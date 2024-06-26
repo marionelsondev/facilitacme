@@ -1,23 +1,29 @@
 from django.db import models
 
-# Model for Material
 class Material(models.Model):
-    name = models.CharField(max_length=100) # Material name
-    material_type = models.CharField(max_legnth=50) # Material type (surgical, disposable, etc.)
-    traceability = models.CharField(max_length=200) # Traceability information
+    name = models.CharField(max_length=100)  # Nome do material
+    material_type = models.CharField(max_length=100)  # Tipo do material
+    current_stage = models.CharField(
+        max_length=50,
+        choices=[
+            ('RECEIVING', 'Recebimento'),
+            ('WASHING', 'Lavagem'),
+            ('PREPARATION', 'Preparo'),
+            ('DISTRIBUTION', 'Distribuição'),
+        ],
+        default='RECEIVING'
+    )  # Etapa atual do processo
+    stages_history = models.TextField(default='Recebimento')  # Histórico de etapas
 
-    def __str__(self):
-        return self.name
-    
-# Model for Stages
-class Stage(models.Model):
-    # Constant for stage choices
-    STAGE_CHOICES = [
-        ('RECEIVING', 'Recebimento'),
-        ('WASHING', 'Lavagem'),
-        ('PREPARATION', 'Preparo'),
-        ('DISTRIBUTION', 'Distribuição'),
-    ]
-    material = models.ForeignKey(Material, on_delete=models.CASCADE) # Link to Material
-    description = models.TextField() # Description of the failure
-    stage = models.CharField(max_length=50, choices=Stage.STAGE_CHOICES) # Stage where the failure occurred
+class Failure(models.Model):
+    description = models.CharField(max_length=200)  # Descrição da falha
+    stage = models.CharField(
+        max_length=50,
+        choices=[
+            ('RECEIVING', 'Recebimento'),
+            ('WASHING', 'Lavagem'),
+            ('PREPARATION', 'Preparo'),
+            ('DISTRIBUTION', 'Distribuição'),
+        ]
+    )  # Etapa onde a falha ocorreu
+    material = models.ForeignKey(Material, related_name='failures', on_delete=models.CASCADE)  # Material relacionado

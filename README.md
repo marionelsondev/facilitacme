@@ -47,4 +47,5 @@ source venv/bin/activate
 - No arquivo `facilitacme_django/setting.py`, adicione `'rest_framework'` e `'materials'` à lista `INSTALLED_APPS` para registrar o aplicativo e o Django REST framework.
 
 ### Configuração de URLs
-No aplicativo `materials`, as URLs são configuradas utilizando o `DefaultRouter` do Django REST framework para gerar automaticamente as rotas das APIs. O arquivo de configuração das URLs está localizado em `materials/urls.py`
+No aplicativo `materials`, as URLs são configuradas utilizando o `DefaultRouter` do Django REST framework para gerar automaticamente as rotas das APIs. O arquivo de configuração das URLs está localizado em `materials/urls.py`.
+
