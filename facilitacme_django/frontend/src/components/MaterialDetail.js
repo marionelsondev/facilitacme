@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import api from '../services/api';
+import '../styles.css';
 
 const MaterialDetail = () => {
     const { id } = useParams();
     const [material, setMaterial] = useState(null);
 
     useEffect(() => {
-        api.get(`/materials/${id}/`)
+        api.get(`materials/${id}/`)
             .then(response => {
                 setMaterial(response.data);
             })
             .catch(error => {
-                console.error('There was an error fetching the material details!', error);
+                console.error('Erro ao buscar o material!', error);
             });
     }, [id]);
 
-    if (!material) {
-        return <div>Loading...</div>;
-    }
+    if (!material) return <p>Carregando...</p>;
 
     return (
-        <div>
-            <h2>Material Details</h2>
-            <p><strong>ID:</strong> {material.id}</p>
-            <p><strong>Name:</strong> {material.name}</p>
-            <p><strong>Material Type:</strong> {material.material_type}</p>
-            <p><strong>Current Stage:</strong> {material.current_stage}</p>
-            <p><strong>Stages History:</strong> {material.stages_history}</p>
+        <div className="container mt-5 text-center">
+            <h1 className="project-title">Detalhes do Material</h1>
+            <table className="table table-bordered mt-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td>{material.id}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nome</th>
+                        <td>{material.name}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tipo de Material</th>
+                        <td>{material.material_type}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Etapa Atual</th>
+                        <td>{material.current_stage}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Histórico de Etapas</th>
+                        <td>{material.stages_history}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };

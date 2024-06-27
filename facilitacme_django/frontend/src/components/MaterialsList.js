@@ -1,45 +1,72 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import '../styles.css';
 
 const MaterialsList = () => {
     const [materials, setMaterials] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        api.get('/materials/')
+        api.get('materials/')
             .then(response => {
                 setMaterials(response.data);
             })
             .catch(error => {
-                console.error('There was an error fetching the materials!', error);
+                console.error('Erro ao buscar os materiais!', error);
             });
     }, []);
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this material?')) {
-            try {
-                await api.delete(`/materials/${id}/`);
+    const handleDelete = (id) => {
+        api.delete(`materials/${id}/`)
+            .then(response => {
                 setMaterials(materials.filter(material => material.id !== id));
-                alert('Material deleted successfully');
-            } catch (error) {
-                console.error('There was an error deleting the material!', error);
-                alert('Failed to delete material');
-            }
-        }
+            })
+            .catch(error => {
+                console.error('Erro ao deletar o material!', error);
+            });
+    };
+
+    const handleGeneratePDF = () => {
+        api.get('materials/pdf_report/', { responseType: 'blob' })
+            .then(response => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'relatorio_materiais.pdf');
+                document.body.appendChild(link);
+                link.click();
+            })
+            .catch(error => {
+                console.error('Erro ao gerar o relatório!', error);
+            });
     };
 
     return (
-        <div>
-            <h1>Materials List</h1>
-            <ul>
+        <div className="container mt-5">
+            <h2 className="text-center">Lista de Materiais</h2>
+            <ul className="list-group">
                 {materials.map(material => (
-                    <li key={material.id}>
+                    <li key={material.id} className="list-group-item d-flex justify-content-between align-items-center">
                         <Link to={`/materials/${material.id}`}>{material.name} - {material.material_type}</Link>
-                        <button onClick={() => handleDelete(material.id)}>Delete</button>
+                        <div>
+                            <Link to={`/materials/${material.id}/edit`}>
+                                <button className="btn btn-primary btn-block">Editar</button>
+                            </Link>
+                            <button 
+                                className="btn btn-danger btn-block"
+                                onClick={() => handleDelete(material.id)}
+                            >
+                                Deletar
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
-            <Link to="/add-material">Add Material</Link>
+            <div className="d-flex justify-content-center mt-4">
+                <button className="btn btn-primary custom-button" onClick={() => navigate('/add-material')}>Adicionar Material</button>
+                <button className="btn btn-primary custom-button ml-2" onClick={handleGeneratePDF}>Gerar Relatório PDF</button>
+            </div>
         </div>
     );
 };

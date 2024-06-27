@@ -1,13 +1,20 @@
 from django.db import models
 
 class Material(models.Model):
+    MATERIAL_TYPE_CHOICES = [
+        ('Instrumental', 'Instrumental'),
+        ('Descartável', 'Descartável'),
+        ('Equipamento', 'Equipamento'),
+        ('Cirúrgico', 'Cirúrgico')
+    ]
+
     name = models.CharField(max_length=100)  # Nome do material
-    material_type = models.CharField(max_length=50)  # Tipo do material
+    material_type = models.CharField(max_length=50, choices=MATERIAL_TYPE_CHOICES)  # Tipo do material
     current_stage = models.CharField(max_length=50, choices=[
-        ('RECEIVING', 'Recebimento'),
-        ('WASHING', 'Lavagem'),
-        ('PREPARATION', 'Preparo'),
-        ('DISTRIBUTION', 'Distribuição'),
+        ('RECEBIMENTO', 'Recebimento'),
+        ('LAVAGEM', 'Lavagem'),
+        ('PREPARO', 'Preparo'),
+        ('DISTRIBUIÇÃO', 'Distribuição'),
     ])  # Etapa atual
     stages_history = models.TextField(blank=True)  # Histórico de etapas
 
@@ -25,10 +32,10 @@ class Material(models.Model):
 class Failure(models.Model):
     description = models.TextField()
     stage = models.CharField(max_length=50, choices=[
-        ('RECEIVING', 'Recebimento'),
-        ('WASHING', 'Lavagem'),
-        ('PREPARATION', 'Preparo'),
-        ('DISTRIBUTION', 'Distribuição'),
+        ('RECEBIMENTO', 'Recebimento'),
+        ('LAVAGEM', 'Lavagem'),
+        ('PREPARO', 'Preparo'),
+        ('DISTRIBUIÇÃO', 'Distribuição'),
     ])  # Etapa da falha
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
 

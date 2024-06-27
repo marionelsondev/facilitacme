@@ -4,9 +4,11 @@ from .models import Material, Failure
 class MaterialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Material
-        fields = ['id', 'name', 'material_type', 'current_stage', 'stages_history']
+        fields = '__all__'
 
 class FailureSerializer(serializers.ModelSerializer):
+    material = serializers.PrimaryKeyRelatedField(queryset=Material.objects.all())
+
     class Meta:
         model = Failure
-        fields = ['id', 'description', 'stage', 'material']
+        fields = '__all__'

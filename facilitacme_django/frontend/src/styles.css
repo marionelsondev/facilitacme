@@ -1,0 +1,172 @@
+/* Estilos gerais */
+body {
+    background-color: #ffffff;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container centralizado */
+.container {
+    margin-top: 50px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #343a40;
+}
+
+/* Estilo do título do projeto */
+.project-title {
+    color: #343a40;
+}
+
+/* Container dos botões */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Botões customizados */
+.custom-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+}
+
+/* Adicionando margem à esquerda */
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+/* Estilos específicos dos botões */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 200px !important;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    width: 200px !important;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Estilo dos itens da lista */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+}
+
+/* Estilo padrão dos botões */
+.btn {
+    border-radius: 5px;
+}
+
+/* Texto centralizado */
+.text-center {
+    margin-bottom: 30px;
+}
+
+/* Botão que ocupa toda a largura do contêiner */
+.btn-block {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Ajuste dos botões */
+.btn-primary, .btn-danger {
+    width: 100px;
+}
+
+/* Grupo de botões */
+.btn-group .btn {
+    width: 100px;
+}
+
+/* Espaçamento para elementos flex */
+.d-flex.justify-content-center.mt-4 {
+    margin-top: 30px;
+}
+
+/* Estilo do botão de sucesso */
+.btn-success {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Estilo do contêiner principal da aplicação */
+.app-container {
+    padding-top: 20px;
+}
+
+/* Estilo da barra de navegação */
+.navbar {
+    background-color: transparent;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 20px; /* Ajuste para dar mais espaçamento */
+}
+
+/* Estilo do link da barra de navegação */
+.navbar-brand {
+    color: #ffffff !important;
+    background-color: #007bff;
+    text-decoration: none;
+    font-size: 18px;
+    border: 1px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar-brand:hover {
+    color: #ffffff;
+    background-color: #0056b3;
+}
+
+/* Estilo da tabela */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.table td {
+    background-color: #f8f9fa;
+}
