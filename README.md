@@ -1,4 +1,3 @@
-```markdown
 # FacilitaCME
 
 FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos processos de CMEs
