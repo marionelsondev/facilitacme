@@ -18,7 +18,7 @@ FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos process
 - Python 3.8+
 - Node.js 14+
 
-## Instalação
+## Para instalar e iniciar a aplicação, siga os seguintes passos:
 
 ### Backend
 
@@ -30,21 +30,26 @@ FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos process
 
 2. Crie e ative um ambiente virtual:
     ```sh
-    python -m venv venv
+    # O ambiente virtual deve ser instalado no diretório >> \facilitacme
+    python -m venv venv # Utilize esse comando dentro da pasta raiz 'facilitacme'
     venv\Scripts\activate  # Se estiver utilizando linux use `source venv/bin/activate`
     ```
+3. Navegue até a pasta 'backend'
+    ```
+    \facilitacme\facilitacme_django\backend
+    ```
 
-3. Instale as dependências:
+4. Instale as dependências:
     ```sh
     pip install -r requirements.txt
     ```
 
-4. Aplique as migrações:
+5. Aplique as migrações:
     ```sh
     python manage.py migrate
     ```
 
-5. Inicie o servidor:
+6. Inicie o servidor:
     ```sh
     python manage.py runserver
     ```
@@ -53,7 +58,7 @@ FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos process
 
 1. Navegue até a pasta do frontend:
     ```sh
-    cd frontend
+    \facilitacme\facilitacme_django\frontend
     ```
 
 2. Instale as dependências:
