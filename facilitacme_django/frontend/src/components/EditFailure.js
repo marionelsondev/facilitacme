@@ -11,6 +11,7 @@ const EditFailure = () => {
     const [materials, setMaterials] = useState([]);
     const navigate = useNavigate();
 
+    // Hook para buscar os detalhes da falha e os materiais disponíveis
     useEffect(() => {
         api.get(`failures/${id}/`)
             .then(response => {
@@ -31,6 +32,7 @@ const EditFailure = () => {
             });
     }, [id]);
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -43,7 +45,7 @@ const EditFailure = () => {
         api.put(`failures/${id}/`, updatedFailure)
             .then(response => {
                 console.log('Falha atualizada com sucesso:', response.data);
-                navigate('/');
+                navigate('/failures'); // Redireciona para a lista de falhas após a atualização
             })
             .catch(error => {
                 console.error('Erro ao atualizar a falha!', error);
@@ -95,7 +97,7 @@ const EditFailure = () => {
                         ))}
                     </select>
                 </div>
-                <button type="submit" className="btn btn-primary mt-3">Atualizar Falha</button>
+                <button type="submit" className="btn btn-primary mt-3">Salvar alterações</button>
             </form>
         </div>
     );

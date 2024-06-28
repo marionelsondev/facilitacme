@@ -1,62 +1,85 @@
-# Projeto Facilitacme Django
+```markdown
+# FacilitaCME
 
-## Instruções de Configuração
+FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos processos de CMEs
 
-### Pré-requisitos
+## Funcionalidades
+
+- Adicionar, editar e visualizar materiais
+- Adicionar, editar e visualizar falhas
+- Gerar relatórios em PDF e XLSX
+
+## Tecnologias
+
+- Backend: Django REST Framework
+- Frontend: React
+
+## Requisitos
+
 - Python 3.8+
-- Django 3.2
-- Django REST framework
-- xlsxwriter
-- fpdf
+- Node.js 14+
 
-### Instalação
+## Instalação
+
+### Backend
 
 1. Clone o repositório:
-    ```bash
-    git clone <url-do-repositorio>
-    cd facilitacme_django
+    ```sh
+    git clone https://github.com/marionelsondev/facilitacme
+    cd facilitacme
     ```
 
 2. Crie e ative um ambiente virtual:
-    ```bash
+    ```sh
     python -m venv venv
-    source venv/bin/activate  # No Windows use `venv\Scripts\activate`
+    venv\Scripts\activate  # Se estiver utilizando linux use `source venv/bin/activate`
     ```
 
-3. Instale as dependências necessárias:
-    ```bash
+3. Instale as dependências:
+    ```sh
     pip install -r requirements.txt
     ```
 
 4. Aplique as migrações:
-    ```bash
-    python manage.py makemigrations
+    ```sh
     python manage.py migrate
     ```
 
-5. Execute o servidor de desenvolvimento:
-    ```bash
+5. Inicie o servidor:
+    ```sh
     python manage.py runserver
     ```
 
-### Uso
+### Frontend
 
-1. Acesse o site de administração em `http://127.0.0.1:8000/admin/` para gerenciar materiais e falhas.
+1. Navegue até a pasta do frontend:
+    ```sh
+    cd frontend
+    ```
 
-2. Use os seguintes endpoints:
-    - `http://127.0.0.1:8000/api/materials/`: Listar e gerenciar materiais
-    - `http://127.0.0.1:8000/api/failures/`: Listar e gerenciar falhas
-    - `http://127.0.0.1:8000/api/failures/generate_report/`: Gerar relatório de falhas em formato XLSX
-    - `http://127.0.0.1:8000/api/materials/pdf_report/`: Gerar relatório em PDF para materiais que concluíram o processo
+2. Instale as dependências:
+    ```sh
+    npm install
+    ```
 
-### Testes
+3. Inicie o servidor de desenvolvimento:
+    ```sh
+    npm start
+    ```
 
-Use ferramentas como o Postman para testar os endpoints da API e garantir que estão funcionando corretamente.
+## Estrutura do Projeto
 
-## Contribuição
+### Backend
 
-Sinta-se à vontade para enviar problemas, fazer um fork do repositório e enviar pull requests.
+- `models.py`: Define os modelos do banco de dados
+- `serializers.py`: Define os serializers para a API
+- `views.py`: Define as views para a API
+- `urls.py`: Define as rotas da API
+- `utils.py`: Funções utilitárias para gerar relatórios
 
-## Licença
+### Frontend
 
-Este projeto está licenciado sob a licença MIT.
+- `components/`: Contém os componentes React
+- `services/api.js`: Configuração do Axios para fazer requisições à API
+- `App.js`: Componente principal da aplicação
+- `index.js`: Ponto de entrada do React

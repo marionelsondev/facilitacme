@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import api from '../services/api';
 import MaterialForm from './MaterialForm';
 
+// Componente que lista os materiais e permite adicionar novos materiais
 const MaterialsList = () => {
+    // Estado para armazenar os materiais
     const [materials, setMaterials] = useState([]);
 
+    // useEffect para buscar os materiais da API ao carregar o componente
     useEffect(() => {
         api.get('materials/')
             .then(response => {
@@ -16,6 +19,7 @@ const MaterialsList = () => {
             });
     }, []);
 
+    // Função para adicionar um novo material na lista
     const handleSave = (newMaterial) => {
         setMaterials([...materials, newMaterial]);
     };

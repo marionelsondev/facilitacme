@@ -7,6 +7,7 @@ const MaterialDetail = () => {
     const { id } = useParams();
     const [material, setMaterial] = useState(null);
 
+    // Hook para buscar os detalhes do material
     useEffect(() => {
         api.get(`materials/${id}/`)
             .then(response => {

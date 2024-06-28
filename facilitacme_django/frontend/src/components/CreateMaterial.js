@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import api from '../services/api';
 
 const CreateMaterial = () => {
+    // Definição dos estados locais para o formulário
     const [name, setName] = useState('');
     const [materialType, setMaterialType] = useState('');
     const [currentStage, setCurrentStage] = useState('RECEIVING');
-
+    
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

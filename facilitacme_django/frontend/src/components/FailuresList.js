@@ -7,6 +7,7 @@ const FailuresList = () => {
     const [failures, setFailures] = useState([]);
     const navigate = useNavigate();
 
+    // Hook para buscar as falhas na API ao carregar o componente
     useEffect(() => {
         api.get('failures/')
             .then(response => {
@@ -17,6 +18,7 @@ const FailuresList = () => {
             });
     }, []);
 
+    // Função para deletar uma falha
     const handleDelete = (id) => {
         api.delete(`failures/${id}/`)
             .then(response => {
@@ -27,6 +29,7 @@ const FailuresList = () => {
             });
     };
 
+    // Função para gerar o relatório de falhas
     const handleGenerateReport = () => {
         api.get('failures/generate_report/', { responseType: 'blob' })
             .then(response => {

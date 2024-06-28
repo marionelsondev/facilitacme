@@ -3,11 +3,13 @@ import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const AddMaterial = () => {
+    // Definição dos estados locais para o formulário
     const [name, setName] = useState('');
     const [materialType, setMaterialType] = useState('');
     const [currentStage, setCurrentStage] = useState('');
     const navigate = useNavigate();
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = (e) => {
         e.preventDefault();
         
@@ -20,7 +22,7 @@ const AddMaterial = () => {
         api.post('materials/', newMaterial)
             .then(response => {
                 console.log('Material adicionado com sucesso:', response.data);
-                navigate('/materials');
+                navigate('/materials'); // Redireciona para a lista de materiais após adicionar
             })
             .catch(error => {
                 console.error('Erro ao adicionar o material!', error);

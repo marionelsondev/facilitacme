@@ -7,6 +7,7 @@ const FailureDetail = () => {
     const { id } = useParams();
     const [failure, setFailure] = useState(null);
 
+    // Hook para buscar os detalhes da falha
     useEffect(() => {
         api.get(`failures/${id}/`)
             .then(response => {
@@ -17,34 +18,30 @@ const FailureDetail = () => {
             });
     }, [id]);
 
-    if (!failure) {
-        return <div className="container mt-5">Carregando...</div>;
-    }
+    if (!failure) return <p>Carregando...</p>;
 
     return (
-        <div className="container mt-5">
-            <h2 className="text-center">Detalhes da Falha</h2>
-            <div className="mt-4">
-                <table className="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Descrição:</th>
-                            <td>{failure.description}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Etapa:</th>
-                            <td>{failure.stage}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Material:</th>
-                            <td>{failure.material ? `${failure.material.name} - ${failure.material.material_type}` : 'N/A'}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div className="text-center">
-                    <Link to={`/failures/${failure.id}/edit`} className="btn btn-primary custom-button">Editar Falha</Link>
-                </div>
-            </div>
+        <div className="container mt-5 text-center">
+            <h1 className="project-title">Detalhes da Falha</h1>
+            <table className="table table-bordered mt-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">Descrição</th>
+                        <td>{failure.description}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Etapa</th>
+                        <td>{failure.stage}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Material</th>
+                        <td>{failure.material_name}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <Link to={`/failures/${failure.id}/edit`}>
+                <button className="btn btn-primary mt-3">Editar Falha</button>
+            </Link>
         </div>
     );
 };

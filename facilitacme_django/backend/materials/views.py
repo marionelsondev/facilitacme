@@ -6,15 +6,18 @@ from .models import Material, Failure
 from .serializers import MaterialSerializer, FailureSerializer
 from .utils import generate_material_report, generate_failure_report_xlsx
 
+# ViewSet para o modelo Material
 class MaterialViewSet(viewsets.ModelViewSet):
-    queryset = Material.objects.all()
-    serializer_class = MaterialSerializer
+    queryset = Material.objects.all()  # Consulta todos os materiais
+    serializer_class = MaterialSerializer  # Define o serializador a ser usado
 
+    # Ação personalizada para obter o histórico de etapas de um material
     @action(detail=True, methods=['get'])
     def stage_history(self, request, pk=None):
         material = self.get_object()
         return Response({'stages_history': material.stages_history})
 
+    # Ação personalizada para gerar relatório em PDF
     @action(detail=False, methods=['get'])
     def pdf_report(self, request):
         filename = generate_material_report()
@@ -24,10 +27,12 @@ class MaterialViewSet(viewsets.ModelViewSet):
             return response
         return Response({'error': 'No materials have completed the process.'}, status=400)
 
+# ViewSet para o modelo Failure
 class FailureViewSet(viewsets.ModelViewSet):
-    queryset = Failure.objects.all()
-    serializer_class = FailureSerializer
+    queryset = Failure.objects.all()  # Consulta todas as falhas
+    serializer_class = FailureSerializer  # Define o serializador a ser usado
 
+    # Ação personalizada para gerar relatório em XLSX
     @action(detail=False, methods=['get'])
     def generate_report(self, request):
         filename = generate_failure_report_xlsx()

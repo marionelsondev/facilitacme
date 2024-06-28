@@ -2,6 +2,7 @@ import xlsxwriter
 from fpdf import FPDF
 from .models import Failure, Material
 
+# Função para gerar relatório de falhas em formato XLSX
 def generate_failure_report_xlsx():
     failures = Failure.objects.all()
 
@@ -27,6 +28,7 @@ def generate_failure_report_xlsx():
     workbook.close()
     return filename
 
+# Função para gerar relatório de materiais em formato PDF
 def generate_material_report():
     materials = Material.objects.filter(current_stage='DISTRIBUIÇÃO')
 
@@ -46,7 +48,7 @@ def generate_material_report():
     # Preencha os dados
     for material in materials:
         pdf.cell(200, 10, txt=f"ID: {material.id}", ln=True)
-        pdf.cell(200, 10, txt=f"NOME: {material.name}", ln=True)
+        pdf.cell(200, 10, txt=f"MATERIAL: {material.name}", ln=True)
         pdf.cell(200, 10, txt=f"TIPO DE MATERIAL: {material.material_type}", ln=True)
         pdf.cell(200, 10, txt=f"ETAPA ATUAL: {material.current_stage}", ln=True)
         pdf.cell(200, 10, txt=f"HISTÓRICO DE ETAPAS: {material.stages_history}", ln=True)

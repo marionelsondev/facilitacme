@@ -3,12 +3,14 @@ import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const AddFailure = () => {
+    // Definição dos estados locais para o formulário
     const [description, setDescription] = useState('');
     const [stage, setStage] = useState('');
     const [material, setMaterial] = useState('');
     const [materials, setMaterials] = useState([]);
     const navigate = useNavigate();
 
+    // Hook para buscar os materiais disponíveis na API ao carregar o componente
     useEffect(() => {
         api.get('materials/')
             .then(response => {
@@ -19,19 +21,20 @@ const AddFailure = () => {
             });
     }, []);
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newFailure = {
             description,
             stage,
-            material: parseInt(material) // Assegure que o material está sendo passado como um número
+            material: parseInt(material) // Assegura que o material está sendo passado como um número
         };
 
         api.post('failures/', newFailure)
             .then(response => {
                 console.log('Falha adicionada com sucesso:', response.data);
-                navigate('/failures');
+                navigate('/failures'); // Redireciona para a lista de falhas após adicionar
             })
             .catch(error => {
                 console.error('Erro ao adicionar a falha!', error);

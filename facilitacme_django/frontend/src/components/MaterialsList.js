@@ -7,6 +7,7 @@ const MaterialsList = () => {
     const [materials, setMaterials] = useState([]);
     const navigate = useNavigate();
 
+    // Hook para buscar os materiais na API ao carregar o componente
     useEffect(() => {
         api.get('materials/')
             .then(response => {
@@ -17,6 +18,7 @@ const MaterialsList = () => {
             });
     }, []);
 
+    // Função para deletar um material
     const handleDelete = (id) => {
         api.delete(`materials/${id}/`)
             .then(response => {
@@ -27,6 +29,7 @@ const MaterialsList = () => {
             });
     };
 
+    // Função para gerar o relatório de materiais
     const handleGeneratePDF = () => {
         api.get('materials/pdf_report/', { responseType: 'blob' })
             .then(response => {

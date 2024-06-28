@@ -8,7 +8,8 @@ const EditMaterial = () => {
     const [name, setName] = useState('');
     const [materialType, setMaterialType] = useState('');
     const [currentStage, setCurrentStage] = useState('');
-
+    
+    // Hook para buscar os detalhes do material
     useEffect(() => {
         api.get(`materials/${id}/`)
             .then(response => {
@@ -22,6 +23,7 @@ const EditMaterial = () => {
             });
     }, [id]);
 
+     // Função para lidar com o envio do formulário
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -34,7 +36,7 @@ const EditMaterial = () => {
         api.put(`materials/${id}/`, updatedMaterial)
             .then(response => {
                 console.log('Material updated successfully:', response.data);
-                navigate('/');
+                navigate('/materials');
             })
             .catch(error => {
                 console.error('Erro ao atualizar o material!', error);
