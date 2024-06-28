@@ -1,4 +1,4 @@
-# FacilitaCME
+# facilitaCME
 
 FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos processos de CMEs
 
@@ -11,7 +11,7 @@ FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos process
 ## Tecnologias
 
 - Backend: Django REST Framework
-- Frontend: React
+- Frontend: React, Bootstrap
 
 ## Requisitos
 
@@ -60,10 +60,19 @@ FacilitaCME é uma aplicação web para gerenciar materiais e falhas nos process
     ```sh
     npm install
     ```
+    
+3. Instale o bootstrap
+    ```sh
+    npm install bootstrap
+    ```
 
-3. Inicie o servidor de desenvolvimento:
+4. Inicie o servidor de desenvolvimento:
     ```sh
     npm start
+    ```
+5. Acesse a aplicação web:
+    ```sh
+    acesse a url 'http://localhost:3000/'
     ```
 
 ## Estrutura do Projeto
